@@ -1,0 +1,14 @@
+﻿
+IncludeFile "UI\FrameDef\Glue\BattleNetTemplates.fdf",
+
+Frame "TEXT" "1" INHERITS "BattleNetButtonTextTemplate" {
+    Text "点我",
+}
+
+Frame "TEXT" "2" INHERITS "BattleNetButtonTextTemplate" {
+    Text "点我",
+}
+
+Frame "TEXT" "3" INHERITS "BattleNetButtonTextTemplate" {
+    Text "人口",
+}

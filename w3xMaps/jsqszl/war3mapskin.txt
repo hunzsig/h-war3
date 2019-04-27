@@ -1,0 +1,38 @@
+[CustomSkin]
+SupplyIcon=war3mapImported\INV_Weapon_Shortblade_51.blp
+LumberIcon=UI\Widgets\ToolTips\Human\ToolTipStonesIcon.blp
+IdlePeon=ReplaceableTextures\CommandButtons\BTNSnowOwl.blp
+InfoPanelIconDamagePierceNeutral=UI\Widgets\Console\Human\infocard-neutral-attack-melee.blp
+ToolTipLumberIcon=UI\Widgets\ToolTips\Human\ToolTipStonesIcon.blp
+InfoPanelIconArmorMediumNeutral=UI\Widgets\Console\Human\infocard-armor-hero.blp
+InfoPanelIconArmorFortNeutral=UI\Widgets\Console\Human\infocard-neutral-armor-unarmored.blp
+SimpleHpBarConsoleSmall=boold2.blp
+CommandButtonCooldown=interface\cooldown ui.mdx
+ChatFont=fonts.ttf
+EscMenuTextFont=fonts.ttf
+TextTagFont=fonts.ttf
+InfoPanelTextFont=fonts.ttf
+MasterFont=fonts.ttf
+MessageFont=fonts.ttf
+
+[FrameDef]
+BONUS_MANAREGEN= - 每点增加7%魔法恢复速度
+BONUS_HPREGEN= - 每点增加0.01生命值恢复速度
+BONUS_ATTACK_SPEED= - 每点增加0.1%攻击速度
+UPKEEP_NONE=hunzsig.org
+UPKEEP_HIGH=hunzsig.org
+UPKEEP_LOW=hunzsig.org
+RESOURCE_UBERTIP_UPKEEP=学习hJass极速作图
+COLON_GOLD_INCOME_RATE=幸运值：
+RESOURCE_UBERTIP_GOLD=玩家杀死敌人该玩家能获得金钱
+RESOURCE_UBERTIP_UPKEEP_INFO_WOOD=hjass.hunzsig.org
+RESOURCE_UBERTIP_UPKEEP_INFO=战斗吧！
+COLON_FOOD=难度等级：
+RESOURCE_UBERTIP_LUMBER=战斗荣誉可换特殊物品亦体现玩家能力|n1.杀死普通敌人获得1点|n2.杀死boss凶手固有30点并随机掉落，随玩家数增加|n3.合成装备获得5点|n4.英雄升级获得25点|n5.复活队友获得10点
+LUMBER=战斗荣誉
+COLON_LUMBER=战斗荣誉：
+RESOURCE_UBERTIP_SUPPLY=玩家越多，经验获得率将会越高
+IDLE_PEON_DESC=Hitting plane...
+IDLE_PEON=空闲的仆人在... (|Cfffed312F8|R)
+MISS=没打中～
+RESOURCES_COLUMN4=官网了解最新资讯
