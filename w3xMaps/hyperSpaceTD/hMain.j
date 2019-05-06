@@ -120,7 +120,7 @@ library Main initializer init needs hJass
 	endfunction
 
 	private function timeRingBreak takes nothing returns nothing
-		local unit u = hevt.getTriggerUnit()
+		local unit u = hevent.getTriggerUnit()
 		local MovieDialogue dia = MovieDialogue.create()
 		local trigger tg = null
 		local location loc = null
@@ -308,19 +308,19 @@ library Main initializer init needs hJass
 		call PingMinimapLocForForceEx( playerForce,Loc_Ring,5, bj_MINIMAPPINGSTYLE_FLASHY, 100, 0, 0 )
 		//
 		set u_timering = hunit.createUnit(player_ally, 'n00Z', Loc_Ring)
-		call hevt.onDead(u_timering,function timeRingBreak)
+		call hevent.onDead(u_timering,function timeRingBreak)
 		set u_timering1 = hunit.createUnitXY(player_ally, 'n05N', 0,  1536)
 		call hattrEffect.setCorrosionVal(u_timering1,5,0)
 		call hattrEffect.setCorrosionDuring(u_timering1,3,0)
-		call hevt.onDead(u_timering1,function timeRingBreakSub)
+		call hevent.onDead(u_timering1,function timeRingBreakSub)
 		set u_timering2 = hunit.createUnitXY(player_ally, 'n05O', 1024, 1024)
 		call hattrEffect.setColdVal(u_timering2,100,0)
 		call hattrEffect.setColdDuring(u_timering2,3,0)
-		call hevt.onDead(u_timering2,function timeRingBreakSub)
+		call hevent.onDead(u_timering2,function timeRingBreakSub)
 		set u_timering3 = hunit.createUnitXY(player_ally, 'n05P', 1536, 0)
 		call hattrEffect.setFreezeVal(u_timering3,30,0)
 		call hattrEffect.setFreezeDuring(u_timering3,3,0)
-		call hevt.onDead(u_timering3,function timeRingBreakSub)
+		call hevent.onDead(u_timering3,function timeRingBreakSub)
 		// 任务F9提醒
 		set txt = ""
 		set txt = txt + "进入时空境域，防御敌人"

@@ -22,8 +22,8 @@ struct hSet
 		set u = null
 	endmethod
 	private static method onHeroSkillHappen takes nothing returns nothing
-		local unit triggerUnit = hevt.getTriggerUnit()
-		local integer skillid = hevt.getTriggerSkill()
+		local unit triggerUnit = hevent.getTriggerUnit()
+		local integer skillid = hevent.getTriggerSkill()
 		local location loc = null
 		local location loc2 = null
 		local hAttrHuntBean bean
@@ -35,7 +35,7 @@ struct hSet
 		local timer t = null
 		if(skillid == 'A05K')then // 逸风 - 一刹
 			call SetUnitAnimation( triggerUnit, "attack slam" )
-			set loc = hevt.getTargetLoc()
+			set loc = hevent.getTargetLoc()
 			set bean = hAttrHuntBean.create()
             set bean.damage = 3 * hattr.getAttackPhysical(triggerUnit)
             set bean.fromUnit = triggerUnit
@@ -52,7 +52,7 @@ struct hSet
             set bean.huntEff = "Objects\\Spawnmodels\\Human\\HumanBlood\\BloodElfSpellThiefBlood.mdl"
             set bean.huntKind = "attack"
             set bean.huntType = "physicalwind"
-            call hskill.shuttleToUnit(triggerUnit,hevt.getTargetUnit(),300,20,30,5,50,null,"attack",'A06K',bean)
+            call hskill.shuttleToUnit(triggerUnit,hevent.getTargetUnit(),300,20,30,5,50,null,"attack",'A06K',bean)
             call bean.destroy()
 		endif
 		if(skillid == 'A05M')then // 赤血 - 狂暴
@@ -83,7 +83,7 @@ struct hSet
 			call DestroyGroup(g)
 			set g = null
 		elseif(skillid == 'A05O')then // 暗影猎手 - 蛇棒
-			set loc = hevt.getTargetLoc()
+			set loc = hevent.getTargetLoc()
 			set loc2 = GetUnitLoc(triggerUnit)
 			set i = 1
 			loop
@@ -115,9 +115,9 @@ struct hSet
 				set i=i+1
 			endloop
 		elseif(skillid == 'A06J')then // 大魔法师 - 魔窍
-			call hattr.addMana(hevt.getTargetUnit(),100,10)
-			call hattr.addManaBack(hevt.getTargetUnit(),3.0,10)
-			call hattr.addAttackHuntType(hevt.getTargetUnit(),"ice",10)
+			call hattr.addMana(hevent.getTargetUnit(),100,10)
+			call hattr.addManaBack(hevent.getTargetUnit(),3.0,10)
+			call hattr.addAttackHuntType(hevent.getTargetUnit(),"ice",10)
 		elseif(skillid == 'A04G')then // 大魔法师 - 暴风雪
 			call hattr.addAttackHuntType(triggerUnit,"waterice",10.0)
 		endif
@@ -129,7 +129,7 @@ struct hSet
 			call hf.isAlive(true)
 			call hf.isBuilding(false)
 			call hf.isAlly(true,triggerUnit)
-			set g = hgroup.createByUnit(hevt.getTargetUnit(),275,function hFilter.get)
+			set g = hgroup.createByUnit(hevent.getTargetUnit(),275,function hFilter.get)
 			call hf.destroy()
 			if(hgroup.count(g)>0)then
 				loop
@@ -172,7 +172,7 @@ struct hSet
 			set g = null
 		elseif(skillid == 'A06Y')then // 魔剑士 - 光焰冲锋
 			call SetUnitAnimation( triggerUnit, "attack" )
-			set loc = hevt.getTargetLoc()
+			set loc = hevent.getTargetLoc()
 			set bean = hAttrHuntBean.create()
             set bean.damage = 4 * hattr.getAttackMagic(triggerUnit)
             set bean.fromUnit = triggerUnit
@@ -206,15 +206,15 @@ struct hSet
 			call hattrNatural.addWood(triggerUnit,1.0 * I2R(GetUnitLevel(triggerUnit)),60)
 		endif
 		if(skillid == 'A074')then // 巫妖 - 冽冰鬼盾
-			call hattr.addToughness(hevt.getTargetUnit(),2.0 * I2R(GetUnitLevel(triggerUnit)),20)
-			call hattr.addPunish(hevt.getTargetUnit(),50.0 * I2R(GetUnitLevel(triggerUnit)),20)
-			call hattrNatural.addIceOppose(hevt.getTargetUnit(),75,20)
+			call hattr.addToughness(hevent.getTargetUnit(),2.0 * I2R(GetUnitLevel(triggerUnit)),20)
+			call hattr.addPunish(hevent.getTargetUnit(),50.0 * I2R(GetUnitLevel(triggerUnit)),20)
+			call hattrNatural.addIceOppose(hevent.getTargetUnit(),75,20)
 		elseif(skillid == 'A075')then // 巫妖 - 阴骨
-			call hattr.addAttackHuntType(hevt.getTargetUnit(),"ice",15)
-			call hattrNatural.addIce(hevt.getTargetUnit(),50.0,15)
+			call hattr.addAttackHuntType(hevent.getTargetUnit(),"ice",15)
+			call hattrNatural.addIce(hevent.getTargetUnit(),50.0,15)
 		elseif(skillid == 'A076')then // 巫妖 - 霜冻凝结
-			call hattr.subMove(hevt.getTargetUnit(),300.0,3)
-			call hattr.subAttackSpeed(hevt.getTargetUnit(),80.0,3)
+			call hattr.subMove(hevent.getTargetUnit(),300.0,3)
+			call hattr.subAttackSpeed(hevent.getTargetUnit(),80.0,3)
 		elseif(skillid == 'A077')then // 巫妖 - 冰封
 			call hAttrEffect.addColdVal(triggerUnit,10.0,6)
 			call hAttrEffect.addColdDuring(triggerUnit,3.0,6)
@@ -223,11 +223,11 @@ struct hSet
 			call hattrNatural.addIce(triggerUnit,1.0 * I2R(GetUnitLevel(triggerUnit)),6)
 		endif
 		if(skillid == 'A08H')then // 操火师 - 点燃
-			if(his.ally(triggerUnit,hevt.getTargetUnit()))then
-				call hattr.addAttackHuntType(hevt.getTargetUnit(),"fire",15)
-				call hattrNatural.addFire(hevt.getTargetUnit(),75.0,15)
+			if(his.ally(triggerUnit,hevent.getTargetUnit()))then
+				call hattr.addAttackHuntType(hevent.getTargetUnit(),"fire",15)
+				call hattrNatural.addFire(hevent.getTargetUnit(),75.0,15)
 			else
-				call hattrNatural.subFire(hevt.getTargetUnit(),75.0,15)
+				call hattrNatural.subFire(hevent.getTargetUnit(),75.0,15)
 			endif
 		endif
 		if(skillid == 'A07E')then // 黑游 - 黑暗之箭
@@ -239,7 +239,7 @@ struct hSet
 		elseif(skillid == 'A07B')then // 黑游 - 邪魅
 			call hattrNatural.addDark(triggerUnit,50,13)
 			call SetUnitAnimation( triggerUnit, "spell" )
-			set loc = hevt.getTargetLoc()
+			set loc = hevent.getTargetLoc()
 			set bean = hAttrHuntBean.create()
             set bean.damage = 5 * hattr.getAttackPhysical(triggerUnit)
             set bean.fromUnit = triggerUnit
@@ -251,8 +251,8 @@ struct hSet
 		endif
 		if(skillid == 'A078')then // 炼金 - 黄金之力
 			set p = GetOwningPlayer(triggerUnit)
-			call hattr.addAttackPhysical(hevt.getTargetUnit(),hplayer.getTotalGoldCost(p) * 0.004,10)
-			call hattr.addAttackSpeed(hevt.getTargetUnit(),hplayer.getTotalGoldCost(p) * 0.0001,10)
+			call hattr.addAttackPhysical(hevent.getTargetUnit(),hplayer.getTotalGoldCost(p) * 0.004,10)
+			call hattr.addAttackSpeed(hevent.getTargetUnit(),hplayer.getTotalGoldCost(p) * 0.0001,10)
 		elseif(skillid == 'A07F')then // 炼金 - 看透生德
 			call hplayer.subGoldRatio(GetOwningPlayer(triggerUnit),15.0,50.00)
 			call hplayer.addExpRatio(GetOwningPlayer(triggerUnit),30.0,50.00)
@@ -267,7 +267,7 @@ struct hSet
 		set t = null
 	endmethod
 	private static method onHeroLevelUp takes nothing returns nothing
-		local unit u = hevt.getTriggerUnit()
+		local unit u = hevent.getTriggerUnit()
 		local integer uid = GetUnitTypeId(u)
 		local integer lv = GetHeroLevel(u)
 		local real diffLv = I2R(lv - hhero.getHeroPrevLevel(u))
@@ -292,7 +292,7 @@ struct hSet
 	endmethod
     private static method onHeroDead takes nothing returns nothing
 		local unit u = GetTriggerUnit()
-		local unit killer = hevt.getLastDamageUnit(u)
+		local unit killer = hevent.getLastDamageUnit(u)
 		local player p = GetOwningPlayer(u)
 		local unit tempu = null
 		local real rebornTime = REBORN_HERO
@@ -316,8 +316,8 @@ struct hSet
 		set tempu = null
 	endmethod
 	private static method onHeroKill takes nothing returns nothing
-		local unit killer = hevt.getKiller()
-		local unit bekiller = hevt.getTargetUnit()
+		local unit killer = hevent.getKiller()
+		local unit bekiller = hevent.getTargetUnit()
 		local unit u = null
 		if(GetUnitAbilityLevel(killer,'A079') >= 1)then // 黑游 - 黑奴
 			call hattr.addAttackSpeed(killer,20,5.00)
@@ -336,14 +336,14 @@ struct hSet
 		set bekiller = null
 	endmethod
     private static method onHeroPick takes nothing returns nothing
-        local unit u = hevt.getTriggerUnit()
+        local unit u = hevent.getTriggerUnit()
         local integer uid = GetUnitTypeId(u)
         local string t = hhero.getHeroType(uid)
         call TriggerRegisterUnitEvent( heroDeadTg, u, EVENT_UNIT_DEATH )
 		call hunit.setOpenPunish(u,true)
-		call hevt.onSkillHappen(u,function thistype.onHeroSkillHappen)
-		call hevt.onLevelUp(u,function thistype.onHeroLevelUp)
-		call hevt.onKill(u,function thistype.onHeroKill)
+		call hevent.onSkillHappen(u,function thistype.onHeroSkillHappen)
+		call hevent.onLevelUp(u,function thistype.onHeroLevelUp)
+		call hevent.onKill(u,function thistype.onHeroKill)
 		call UnitAddAbility(u,'A082') // reborn
         //检测英雄类别
         if(t == "str")then
@@ -672,7 +672,7 @@ struct hSet
 	// 刷兵机制
     private static method onEnemyDead takes nothing returns nothing
 		local unit u = GetTriggerUnit()
-		local unit killer = hevt.getLastDamageUnit(u)
+		local unit killer = hevent.getLastDamageUnit(u)
 		local integer exp = 0
 		local integer gold = 0
         local real x = GetUnitX(u)
@@ -739,7 +739,7 @@ struct hSet
 
 	private static method onBossDead takes nothing returns nothing
 		local unit u = GetTriggerUnit()
-		local unit killer = hevt.getLastDamageUnit(u)
+		local unit killer = hevent.getLastDamageUnit(u)
 		local integer exp = 0
 		local integer gold = 0
 		local integer i = 0
@@ -1040,9 +1040,9 @@ struct hSet
 
     // 注册瞬逝型物品
     private static method registerItemMonentCall takes nothing returns nothing
-        local unit u = hevt.getTriggerUnit()
-        local integer id = hevt.getId()
-        local real charges = hevt.getValue()
+        local unit u = hevent.getTriggerUnit()
+        local integer id = hevent.getId()
+        local real charges = hevent.getValue()
         if (id == 'o002') then // 金币
             call haward.forUnitGold(u,2*R2I(charges))
         elseif (id == 'o003') then // 木材
@@ -1099,13 +1099,13 @@ struct hSet
         call TriggerAddAction(sommonDeadTg,function thistype.onSommonDead)
         call TriggerAddAction(sommonLevelupTg,function thistype.onSommonLevelup)
 
-        call hevt.onPickHero(function thistype.onHeroPick)
+        call hevent.onPickHero(function thistype.onHeroPick)
 
         // item
         call registerItemMonent()
 
 		// build
-		call hevt.onConstructFinish(function thistype.onConstructFinish)
+		call hevent.onConstructFinish(function thistype.onConstructFinish)
 		set u = null
     endmethod
 

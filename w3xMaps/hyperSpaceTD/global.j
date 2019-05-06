@@ -428,10 +428,10 @@ struct hGlobals
     endmethod
     
     public static method onSummonSkillHappen takes nothing returns nothing
-		local unit triggerUnit = hevt.getTriggerUnit()
-        local unit targetUnit = hevt.getTargetUnit()
+		local unit triggerUnit = hevent.getTriggerUnit()
+        local unit targetUnit = hevent.getTargetUnit()
         local integer triggerUID = 0
-		local integer skillid = hevt.getTriggerSkill()
+		local integer skillid = hevent.getTriggerSkill()
         local player p = null
 		local location loc = null
 		local location loc2 = null
@@ -517,8 +517,8 @@ struct hGlobals
         set t = null
 	endmethod
     public static method onSummonAttack takes nothing returns nothing
-		local unit triggerUnit = hevt.getTriggerUnit()
-		local unit targetUnit = hevt.getTargetUnit()
+		local unit triggerUnit = hevent.getTriggerUnit()
+		local unit targetUnit = hevent.getTargetUnit()
         local integer uid = GetUnitTypeId(triggerUnit)
         local integer rand = GetRandomInt(1,30)
         local integer i = 0
@@ -664,8 +664,8 @@ struct hGlobals
 					call UnitAddAbility(u,g_summon_upgradeid[i])
 					call TriggerRegisterUnitEvent( sommonDeadTg, u, EVENT_UNIT_DEATH )
 					call TriggerRegisterUnitEvent( sommonLevelupTg , u , EVENT_UNIT_HERO_LEVEL )
-                    call hevt.onSkillHappen(u,function thistype.onSummonSkillHappen)
-                    call hevt.onAttack(u,function thistype.onSummonAttack)
+                    call hevent.onSkillHappen(u,function thistype.onSummonSkillHappen)
+                    call hevent.onAttack(u,function thistype.onSummonAttack)
 					call DoNothing() YDNL exitwhen true//(  )
 				endif
 			set i = i+1
@@ -700,7 +700,7 @@ struct hGlobals
         set u = null
     endmethod
     public static method deadSummon takes unit u returns nothing
-		local unit killer = hevt.getLastDamageUnit(u)
+		local unit killer = hevent.getLastDamageUnit(u)
 		local real rebornTime = REBORN_SUMMON
         local integer uid = GetUnitTypeId(u)
         local integer lv = GetUnitLevel(u)
@@ -1362,9 +1362,9 @@ struct hGlobals
 	endmethod
 
     private static method itemUseAction takes nothing returns nothing
-        local unit u = hevt.getTriggerUnit()
-        local item it = hevt.getTriggerItem()
-        local integer itid =hevt.getId()
+        local unit u = hevent.getTriggerUnit()
+        local item it = hevent.getTriggerItem()
+        local integer itid =hevent.getId()
         local player p = GetOwningPlayer(u)
         local string txt = null
         if(itid == 'I00K')then
@@ -1909,8 +1909,8 @@ struct hGlobals
     endmethod
 
     public static method onBossSkillHappen takes nothing returns nothing
-		local unit triggerUnit = hevt.getTriggerUnit()
-		local integer skillid = hevt.getTriggerSkill()
+		local unit triggerUnit = hevent.getTriggerUnit()
+		local integer skillid = hevent.getTriggerSkill()
 		local location loc = null
 		local location loc2 = null
 		local hAttrHuntBean bean = 0
@@ -1926,12 +1926,12 @@ struct hGlobals
             set bean.huntEff = "Abilities\\Spells\\Undead\\Sleep\\SleepSpecialArt.mdl"
             set bean.huntKind = "attack"
             set bean.huntType = "physicalwind"
-            call hskill.shuttleToUnit(triggerUnit,hevt.getTargetUnit(),400,10,30,5,50,null,"attack",'A06L',bean)
+            call hskill.shuttleToUnit(triggerUnit,hevent.getTargetUnit(),400,10,30,5,50,null,"attack",'A06L',bean)
             call bean.destroy()
 		elseif(skillid == 'A062')then // BOSS lv70 白毛猛犸王
             set hxy.x = GetUnitX(triggerUnit)
             set hxy.y = GetUnitY(triggerUnit)
-            set hxy = hlogic.polarProjection(hxy,500,hlogic.getDegBetweenUnit(triggerUnit,hevt.getTargetUnit()))
+            set hxy = hlogic.polarProjection(hxy,500,hlogic.getDegBetweenUnit(triggerUnit,hevent.getTargetUnit()))
             set loc = Location(hxy.x,hxy.y)
 			set bean = hAttrHuntBean.create()
             set bean.damage = 11000
@@ -1949,7 +1949,7 @@ struct hGlobals
             set bean.huntEff = "Abilities\\Spells\\Other\\Tornado\\TornadoElementalSmall.mdl"
             set bean.huntKind = "attack"
             set bean.huntType = "physicalwind"
-            call hskill.shuttleToUnit(triggerUnit,hevt.getTargetUnit(),500,13,30,5,50,null,"attack",'A06M',bean)
+            call hskill.shuttleToUnit(triggerUnit,hevent.getTargetUnit(),500,13,30,5,50,null,"attack",'A06M',bean)
             call bean.destroy()
 		elseif(skillid == 'A061')then // BOSS lv105 死神 穿梭
 			call SetUnitVertexColorBJ( triggerUnit, 100, 100, 100, 75.00 )
@@ -1959,7 +1959,7 @@ struct hGlobals
             set bean.huntEff = "war3mapImported\\DarkSwirl.mdl"
             set bean.huntKind = "skill"
             set bean.huntType = "realdark"
-            call hskill.shuttleToUnit(triggerUnit,hevt.getTargetUnit(),500,16,30,5,350,null,"attack",'A087',bean)
+            call hskill.shuttleToUnit(triggerUnit,hevent.getTargetUnit(),500,16,30,5,350,null,"attack",'A087',bean)
             call bean.destroy()
 		endif
         set triggerUnit = null
@@ -1969,8 +1969,8 @@ struct hGlobals
 		set u = null
 	endmethod
     public static method onBossAttack takes nothing returns nothing
-		local unit triggerUnit = hevt.getTriggerUnit()
-		local unit targetUnit = hevt.getTargetUnit()
+		local unit triggerUnit = hevent.getTriggerUnit()
+		local unit targetUnit = hevent.getTargetUnit()
         local integer uid = GetUnitTypeId(triggerUnit)
         local integer rand = GetRandomInt(1,10)
 		local location loc = null
@@ -2256,8 +2256,8 @@ struct hGlobals
             call hattrEffect.addSwimOdds(mon,45.0,0)
             call hattrEffect.addSwimDuring(mon,2.0,0)
         endif
-        call hevt.onSkillHappen(mon,function thistype.onBossSkillHappen)
-        call hevt.onAttack(mon,function thistype.onBossAttack)
+        call hevent.onSkillHappen(mon,function thistype.onBossSkillHappen)
+        call hevent.onAttack(mon,function thistype.onBossAttack)
     endmethod
     public static method bossDeadDrop takes unit mon returns nothing
         local integer uid = GetUnitTypeId(mon)
