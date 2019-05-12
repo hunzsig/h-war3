@@ -308,12 +308,13 @@ for k, v in ipairs(heros) do
     obj.sight = v.sight or 1000 -- 白天视野
     obj.nsight = v.nsight or 600 -- 夜晚视野
     obj.targs1 = "vulnerable,ground,ward,structure,organic,mechanical,tree,debris,air" --攻击目标
-    obj.EditorSuffix = v.EditorSuffix or "#hJLua"
-    obj.Propernames = v.Propernames or "#hJLua"
+    obj.EditorSuffix = v.EditorSuffix or "#h-lua"
+    obj.Propernames = v.Propernames or "#h-lua"
     obj.abilList = v.abilList or ""
     obj.heroAbilList = v.heroAbilList or ""
     obj.nameCount = v.nameCount or 1
-    if(obj.weapTp1 == "msplash" or obj.weapTp1 == "artillery")then --溅射/炮火
+    if (obj.weapTp1 == "msplash" or obj.weapTp1 == "artillery") then
+        --溅射/炮火
         obj.Farea1 = v.Farea1 or 0
         obj.Qfact1 = v.Qfact1 or 0
         obj.Qarea1 = v.Qarea1 or 0
@@ -321,19 +322,22 @@ for k, v in ipairs(heros) do
         obj.Harea1 = v.Harea1 or 0
         obj.splashTargs1 = obj.targs1 .. ",enemies"
     end
-    if(obj.weapTp1 == "mbounce")then --弹射
+    if (obj.weapTp1 == "mbounce") then
+        --弹射
         obj.Farea1 = v.Farea1 or 0
         obj.targCount1 = v.targCount1 or 1
         obj.damageLoss1 = v.damageLoss1 or 0
         obj.splashTargs1 = obj.targs1 .. ",enemies"
     end
-    if(obj.weapTp1 == "mline")then --穿透
+    if (obj.weapTp1 == "mline") then
+        --穿透
         obj.spillRadius = v.spillRadius or 0
         obj.spillDist1 = v.spillDist1 or 0
         obj.damageLoss1 = v.damageLoss1 or 0
         obj.splashTargs1 = obj.targs1 .. ",enemies"
     end
-    if(obj.weapTp1 == "aline")then --炮火穿透
+    if (obj.weapTp1 == "aline") then
+        --炮火穿透
         obj.Farea1 = v.Farea1 or 0
         obj.Qfact1 = v.Qfact1 or 0
         obj.Qarea1 = v.Qarea1 or 0

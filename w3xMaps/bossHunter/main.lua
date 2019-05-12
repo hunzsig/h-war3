@@ -1,12 +1,12 @@
 --为lua引擎注册你的本机路径
-package.path = package.path .. ';E:\\Web\\workSpace\\hunzsigGitlab\\h-war3\\h-lua\\?.lua';
-package.path = package.path .. ';E:\\Web\\workSpace\\hunzsigGitlab\\h-war3\\bossHunter\\?.lua';
+package.path = package.path .. ';E:\\Web\\workSpace\\hunzsigGithub\\h-war3\\h-lua\\?.lua';
+package.path = package.path .. ';E:\\Web\\workSpace\\hunzsigGithub\\h-war3\\w3xMaps\\bossHunter\\?.lua';
 
 --调试
 console = require "jass.console"
 console.enable = true
 
---加载hJLua
+--加载h-lua
 require "h-lua"
 
 --英雄SLK系统
@@ -30,11 +30,15 @@ for k, v in ipairs(hslk_global.heroesItems) do
     hslk_global.heroesItemsKV[jv.itemID] = jv
 end
 
-cj.TimerStart(cj.CreateTimer(), 5.00, true,
-        function()
-            print(hslk_global.attr)
-        end
-)
+-- todo 测试的3秒 代码
+htime.setInterval(3.00, nil, function()
+    print('player1mapLv = ' .. hdzapi.mapLv(hplayer.players[1]))
+    print('htime.his = ' .. htime.his())
+    hdzapi.server.set.str(hplayer.players[1], 'time', htime.his())
+    if(hdzapi.hasMallItem(hplayer.players[1], 'abc'))then
+        print('123456789')
+    end
+end)
 
 local preload = {};
 for k, v in pairs(hslk_global.unitsKV) do
