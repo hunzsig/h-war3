@@ -13,8 +13,8 @@ location Loc_DeathBack = Location(-597,5510)
 integer array H_MAP_LV
 integer array H_MAP_LV_GIFT
 integer g_gift_count = 0
-real REBORN_HERO = 20
-real REBORN_SUMMON = 45
+real REBORN_HERO = 25
+real REBORN_SUMMON = 50
 
 timer g_timer_wave = null
 integer g_max_wave = 120
@@ -22,11 +22,12 @@ integer g_wave = 0
 integer g_first_wave = 0
 integer g_boss_mod = 5
 real g_boss_ready_time = 90
-real g_first_ready_time = 70.00 // 准备时间(第一波)
+real g_first_ready_time = 60.00 // 准备时间(第一波)
 boolean g_waving = false
 group g_crazy_boss = CreateGroup()
 
-real g_game_speed = 5.00
+real g_game_speed = 5.00 // 5
+real g_game_mon_loop = 0.50 // 0.4 每只怪出兵间隔
 integer g_token_count = 0
 integer g_building_count = 0
 integer g_hero_count = 0
@@ -64,7 +65,7 @@ real array g_summon_manaback
 real array g_summon_defend
 real array g_summon_attackPhysical
 
-integer g_gp_max = 360
+integer g_gp_max = 360 // 360
 group g_gp_mon = CreateGroup()
 group g_gp_summon = CreateGroup()
 real g_ring_break_up = 0
@@ -571,7 +572,7 @@ struct hGlobals
         // 100%触发
         if(uid == 'H012')then // 狂战猎手
             if(GetUnitAbilityLevel(triggerUnit,'A08V') >= 1 and hunit.getUserData(triggerUnit) == 777)then
-                call hattr.subLifeBack(triggerUnit,1.5*GetUnitLevel(triggerUnit),3.5)
+                call hattr.subLifeBack(triggerUnit,1.2*GetUnitLevel(triggerUnit),3.5)
                 call hattr.addAttackSpeed(triggerUnit,70,3.5)
                 call hattr.addAttackPhysical(triggerUnit,2.5*GetUnitLevel(triggerUnit),3.5)
                 call heffect.toUnit("war3mapImported\\BloodElementalMissile.mdl",triggerUnit,"origin",1.00)
@@ -1836,7 +1837,17 @@ struct hGlobals
 		set hitembean.item_overlay = 9
 		set hitembean.item_lumber = 40
 		set hitembean.int = 185
-		set hitembean.unarmOdds = 7.5
+		set hitembean.unarmOdds = 4.5
+		set hitembean.unarmDuring = 2.5
+        call hitem.format(hitembean)
+		call hitembean.destroy()
+        set hitembean = hItemBean.create() // 天神法杖 [ 100L ]
+		set hitembean.item_id = 'I022'
+        set hitembean.item_type = HITEM_TYPE_FOREVER
+		set hitembean.item_overlay = 9
+		set hitembean.item_lumber = 100
+        set hitembean.silentOdds = 10.0
+		set hitembean.unarmOdds = 10.0
 		set hitembean.unarmDuring = 2.5
         call hitem.format(hitembean)
 		call hitembean.destroy()

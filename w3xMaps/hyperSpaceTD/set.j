@@ -850,10 +850,10 @@ struct hSet
 
     private static method mildDirect takes nothing returns nothing
 		local timer t = null
-		set t = htime.setInterval(0.40,function thistype.createEnemy)
+		set t = htime.setInterval(g_game_mon_loop,function thistype.createEnemy)
 		call htime.setInteger(t,1,0)
 		if (hlogic.imod(g_wave,g_boss_mod) == 0) then
-			set t = htime.setTimeout(0.40*0.6*(g_gp_max / g_game_speed),function thistype.createBoss)
+			set t = htime.setTimeout(g_game_mon_loop*0.6*(g_gp_max / g_game_speed),function thistype.createBoss)
 		endif
 		set t = null
 	endmethod
@@ -864,10 +864,10 @@ struct hSet
 		call hmedia.soundPlay(gg_snd_audio_effect_4)
 		call SetUnitTimeScalePercent( u_timering, 100.00 )
 		call ForGroupBJ( g_gp_summon, function thistype.stopSommons )
-		set t = htime.setInterval(0.40,function thistype.createEnemy)
+		set t = htime.setInterval(g_game_mon_loop,function thistype.createEnemy)
 		call htime.setInteger(t,1,0)
 		if (hlogic.imod(g_wave,g_boss_mod) == 0) then
-			set t = htime.setTimeout(0.40*0.6*(g_gp_max / g_game_speed),function thistype.createBoss)
+			set t = htime.setTimeout(g_game_mon_loop*0.6*(g_gp_max / g_game_speed),function thistype.createBoss)
 		endif
 		set t = null
 	endmethod

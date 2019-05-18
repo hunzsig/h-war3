@@ -217,7 +217,7 @@ library Main initializer init needs hJass
 			call QuestMessageBJ( playerForce, bj_QUESTMESSAGE_COMPLETED, "混沌开始!" )
 			//排行榜
 			call htime.setInterval(2.5,function myleaderboard)
-			call hmedia.hanabi(rectHanabi,30.0)
+			// call hmedia.hanabi(rectHanabi,30.0)
 		endif
 	endfunction
 
@@ -309,15 +309,15 @@ library Main initializer init needs hJass
 		//
 		set u_timering = hunit.createUnit(player_ally, 'n00Z', Loc_Ring)
 		call hevent.onDead(u_timering,function timeRingBreak)
-		set u_timering1 = hunit.createUnitXY(player_ally, 'n05N', 0,  1536)
+		set u_timering1 = hunit.createUnitXY(player_ally, 'n05N', 0,  1024)
 		call hattrEffect.setCorrosionVal(u_timering1,5,0)
 		call hattrEffect.setCorrosionDuring(u_timering1,3,0)
 		call hevent.onDead(u_timering1,function timeRingBreakSub)
-		set u_timering2 = hunit.createUnitXY(player_ally, 'n05O', 1024, 1024)
+		set u_timering2 = hunit.createUnitXY(player_ally, 'n05O', 768, 768)
 		call hattrEffect.setColdVal(u_timering2,100,0)
 		call hattrEffect.setColdDuring(u_timering2,3,0)
 		call hevent.onDead(u_timering2,function timeRingBreakSub)
-		set u_timering3 = hunit.createUnitXY(player_ally, 'n05P', 1536, 0)
+		set u_timering3 = hunit.createUnitXY(player_ally, 'n05P', 1024, 0)
 		call hattrEffect.setFreezeVal(u_timering3,30,0)
 		call hattrEffect.setFreezeDuring(u_timering3,3,0)
 		call hevent.onDead(u_timering3,function timeRingBreakSub)
